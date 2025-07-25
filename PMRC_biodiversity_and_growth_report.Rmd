@@ -10,33 +10,38 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+#plot(pressure)
 ```
-## Introduction
 
-## Methods: Data collection
+## Introduction <!-- Tim -->
+
+## Methods: Data collection <!--  -->
 
 Put in some text describing the data collection methods based on our plots
 
 ## Results
 
-### Vegetation structure
+### Vegetation structure <!-- Garrett -->
 
-#### Tree growth 
+#### Tree growth <!-- Sophie -->
 
-### Vegetation composition
+#### Coarse Woody Debris <!-- Teaghan -->
 
-### Understory composition
+### Vegetation composition <!-- Teaghan -->
 
-#### Bryophytes
+### Tree-related Microhabitats (TreMs) <!-- Teaghan -->
 
-### Macrofungi
+### Understory composition <!-- Walt -->
 
-### Tubing
+#### Bryophytes <!-- Walt -->
 
-### Wildlife
+### Macrofungi <!-- Emma -->
 
-## To sugar or not to sugar
+### Tubing <!-- Naya -->
+
+### Wildlife <!-- Naya -->
+
+## To sugar or not to sugar <!-- Tim -->
 
 
 
