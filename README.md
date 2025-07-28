@@ -1,5 +1,5 @@
 # PMRC Biodiversity Surveys
-This repository documents biodiversity measurements taken across the University of Vermont (UVM) Proctor Maple Research Center (PMRC) forest.
+This repository documents plot-based measurements of forest structure composition and biodiversity taken across sugarwoods of the University of Vermont's (UVM) Proctor Maple Research Center (PMRC).
 
 ## Running Code
 The R scripts in this repository are designed to be modular. One can import the numbered scripts to sequentially perform commonly-repeated data ingest & cleansing tasks prior to performing analysis.
