@@ -25,13 +25,23 @@ Forest composition was sampled throughout the PMRC land parcel through the selec
 
 Some data points were collected only on features residing within one of the 3 subplots or along the 3 transects, while others were measured throughout the entirety of the plot area. Measurements of trees, maple sap tubing, wildlife tracks, and tree-related microhabitats occurred throughout the entire plot. Understory composition, bryophytes, and coarse woody debris were primarily measured along the transect lines. Macrofungi measurements occurred within the 3 subplots.
 
+To mark the plots, the measurement team traveled to the plot center using a set of coordinates. With a PVC pipe posted at plot center, one individual stood at plot center with a compass and either a laser range finder or measuring tape in metric units. That individual directed another individual (holding the other end of the measuring tape, if used) to the 11.3-m plot boundary and the 5.6-m subplot centers for marking via flags. The 3.59-meter subplot boundary radius about the subplot center was then flagged in similar fashion.
+
+Ideally, prior to any other individuals moving onto and potentially disturbing the plot, the team conducts fauna and fungi measurements. Fungi should at a minimum be identified and flagged before the remaining team travels onto the plot by foot, saved for later analysis.
+
+After doing so, the measurement team splits into three primary groups: trees, understory & bryophytes, and fungi. For tree measurements, one individual remains at plot center and directs another individual towards relevant trees within the plot area in a clockwise direction, starting at magnetic north. Trees greater than 9cm DBH (1.3 meters above ground), either alive or dead, excluding snags, should be included. The moving individual should identify the DBH of the tree, species, canopy status, and crown dieback, as well as label the tree with flagging tape. The individual at plot center should call out the magnetic angle and distance in meters to the tree, before sketching the tree location on a printed plot diagram (resembling Figure 1). Ideally, a third individual on the tree group records the measurements. After completing all trees, it is recommended that a member of the trees team uses the laser range finder to identify the height of all the flagged trees, if possible. This requires a substantial amount of movement around each tree to get the highest possible line-of-sight for an accurate height reading.
+
+After labeling all relevant trees, the tree team should transition to taphole measurements for all labeled trees, as applicable, and coarse woody debris measurements along the 3 transects. Each task can require either one or two individuals. For tapholes, one should use digital calipers to measure the depth, width, and height of all tapholes in millimeters. For coarse woody debris, ideally two individuals measure the length (meters), diameter (cm), decomposition class (qualitative 1-5 judgement), and species (if possible) for any fallen debris touching the transect lines that is longer than 2 meters in length and 7 cm in diameter.
+
+BRYOPHYTES, UNDERSTORY, AND FUNGI METHODS HERE
+
 ## Results
 
 ### Vegetation structure <!-- Garrett -->
 
-As shown in Figure 2 below, the plots predominately contain sugar maple, with sizeable fractions of American beech and yellow birch.
+As shown in Figure 2 below, the plots predominately contain sugar maple, with sizable fractions of American beech and yellow birch. Approximately half of the sampled sugar maple population possessed visible tapholes from recent sugaring operations.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 source("01_read_data.R")
 require ("ggplot2")
 require ("forcats")
@@ -41,9 +51,26 @@ rownames(hist_counts) <- NULL
 ggplot(head(hist_counts, 12), aes(x = reorder(Var1, -Freq), y=Freq)) + geom_bar(stat="identity") + labs(title="Fig 2. Top Tree Species", x="Species", y="Counts (across all plots)") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
+Sampled trees typically range between 9 and approximately 80 cm DBH, with a mean of 26 cm. Exact distributions of DBH, height, and species will vary between plots. The density of trees also varies. Intuitively, one would expect trees with a larger DBH (and crown diameter) to reduce growth opportunities for neighboring trees. Figure 3 displays this relationship, defining tree competitiveness as the total basal area of all trees in a 5-m radius of any given tree. We see a reduction in neighboring basal area as tree DBH increases.
+
+```{r message=FALSE, warning=FALSE}
+source("01_read_data.R")
+
+### Use external script to calculate total basal area surrounding our trees.
+## This script depends on the `d_tree` dataframe created by "01_read_data.R"
+## Primary output is the `d_tree_competition` dataframe.
+source("02_calculate_basal_area_buffer.R")
+
+# Plot the results.
+plot(d_tree_competition$dbh, d_tree_competition$compensated_buffer_area, xlab="DBH, cm", ylab="Basal area (sq. m) within 5m radius of tree", main="Fig. 3: PMRC Tree Competitiveness")
+
+```
+
 #### Tree growth <!-- Sophie -->
 
 #### Coarse Woody Debris <!-- Teaghan -->
+
+Plots varied in their density of coarse woody debris (CWD). A significant number of plot transects did not contain any qualifying CWD. Due to decomposition, over two-thirds of recorded CWD could only be classified as a hardwood or unknown species. Some newly-fallen debris possessed enough bark characteristics for confident classification.
 
 ### Vegetation composition <!-- Teaghan -->
 
