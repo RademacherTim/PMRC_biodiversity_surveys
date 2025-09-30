@@ -6,11 +6,14 @@
 library ("readxl")
 library ("dplyr")
 
+# directory variable ----
+dir <- "../"
+
 # read plot data including metadata, tree, tubing, understory, fungi, coarse 
 # woody material, and wildlife data ----
-d_plot <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_plot <- read_excel(path = paste0(dir, "Plot-level_data_sheet.xlsx"), 
                      sheet = "Plot")
-d_tree <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_tree <- read_excel(path = paste0(dir, "Plot-level_data_sheet.xlsx"), 
                      sheet = "Trees",
                      range = "A1:Q342") # TR - removed the last 
 # five columns as they are irrelevant, as the only exist because of link to 
@@ -18,7 +21,7 @@ d_tree <- read_excel(path = "../Plot-level_data_sheet.xlsx",
 # separately below.
 # TR - I also currently hardcoded the last row index, which will have to change 
 # with varying file length. 
-d_tap <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_tap <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                     sheet = "Trees",
                     range = "A1:AL342", 
                     col_names = 
@@ -31,15 +34,15 @@ d_tap <- read_excel(path = "../Plot-level_data_sheet.xlsx",
                       ) [, c(1:3, 18:38)]
 # TR - I also currently hardcoded the last row index, which will have to change 
 # with varying file length. 
-d_under <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_under <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                       sheet = "Understory")
-d_CWD <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_CWD <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                     sheet = "Coarse woody debris")
-d_fungi <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_fungi <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                       sheet = "Fungi")
-d_tubing <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_tubing <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                        sheet = "Tubing")
-d_fauna <- read_excel(path = "../Plot-level_data_sheet.xlsx", 
+d_fauna <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
                       sheet = "Wildlife")
 
 # rename columns for code efficiency (i.e., "dbh (cm)" -> dbh) ----
