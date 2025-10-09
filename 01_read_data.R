@@ -105,7 +105,4 @@ d_fauna <- d_fauna %>%
          dia_t = "Tubing size (in)", col_t = "Tubing color", 
          comments = "Comments")
   
-
-
-
 #===============================================================================
