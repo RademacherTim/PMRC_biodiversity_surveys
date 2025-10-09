@@ -21,7 +21,7 @@ abline(fit, col = "red")
 
 fit2 <- lmer (n_TreMs ~ dbh + (1 | spp), data = d_tree)
 coef(fit2)
-abline()
+abline(fit2)
 
 # 
 d_tree %>% 

@@ -104,5 +104,4 @@ d_fauna <- d_fauna %>%
          hei_t = "Tubing height at crossing (cm)",
          dia_t = "Tubing size (in)", col_t = "Tubing color", 
          comments = "Comments")
-  
 #===============================================================================
