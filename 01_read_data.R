@@ -11,17 +11,18 @@ dir <- "../"
 
 # read plot data including metadata, tree, tubing, understory, fungi, coarse 
 # woody material, and wildlife data ----
-d_plot <- read_excel(path = paste0(dir, "Plot-level_data_sheet.xlsx"), 
+file_name <- "Plot-level_data_sheet-UPDATED-TreM-TM_Copy.xlsx"
+d_plot <- read_excel(path = paste0(dir, file_name), 
                      sheet = "Plot")
-d_tree <- read_excel(path = paste0(dir, "Plot-level_data_sheet.xlsx"), 
+d_tree <- read_excel(path = paste0(dir, file_name), 
                      sheet = "Trees",
-                     range = "A1:Q342") # TR - removed the last 
+                     range = "A1:Q411") # TR - removed the last 
 # five columns as they are irrelevant, as the only exist because of link to 
 # additional TreMs notes. Also, removed the tap columns, as they are read in 
 # separately below.
 # TR - I also currently hardcoded the last row index, which will have to change 
 # with varying file length. 
-d_tap <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_tap <- read_excel(path = paste0(dir, file_name), 
                     sheet = "Trees",
                     range = "A1:AL342", 
                     col_names = 
@@ -34,15 +35,15 @@ d_tap <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"),
                       ) [, c(1:3, 18:38)]
 # TR - I also currently hardcoded the last row index, which will have to change 
 # with varying file length. 
-d_under <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_under <- read_excel(path = paste0(dir, file_name), 
                       sheet = "Understory")
-d_CWD <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_CWD <- read_excel(path = paste0(dir, file_name), 
                     sheet = "Coarse woody debris")
-d_fungi <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_fungi <- read_excel(path = paste0(dir,file_name), 
                       sheet = "Fungi")
-d_tubing <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_tubing <- read_excel(path = paste0(dir, file_name), 
                        sheet = "Tubing")
-d_fauna <- read_excel(path = paste0(dir,"Plot-level_data_sheet.xlsx"), 
+d_fauna <- read_excel(path = paste0(dir, file_name), 
                       sheet = "Wildlife")
 
 # rename columns for code efficiency (i.e., "dbh (cm)" -> dbh) ----
@@ -67,7 +68,8 @@ d_tree <- d_tree %>%
          spp = "Species", dbh = "dbh (cm)", h ="Height (m)", 
          canopy_status = "Canopy status", canopy_damage = "Canopy damage (1-5)",
          cored = "Cored (T/F)", n_TreMs = "# of TreMs", h_TreMs = "TreMs Height",
-         tapped = "Tapped (T/F)")
+         tapped = "Tapped (T/F)") %>%
+  mutate(alive = as.logical(alive))
 d_under <- d_under %>%
   rename(site = "Site #", plot = "Plot #", subplot = "Subplot", 
          name = "Common Name", spp = "Species", group = "Group", 
@@ -105,3 +107,4 @@ d_fauna <- d_fauna %>%
          dia_t = "Tubing size (in)", col_t = "Tubing color", 
          comments = "Comments")
 #===============================================================================
+
