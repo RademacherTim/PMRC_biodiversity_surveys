@@ -7,7 +7,8 @@ library ("readxl")
 library ("dplyr")
 
 # directory variable ----
-dir <- "../"
+dir <- "../" # Tim
+#dir <- "./"  # Hannah
 
 # read plot data including metadata, tree, tubing, understory, fungi, coarse 
 # woody material, and wildlife data ----
@@ -70,6 +71,20 @@ d_tree <- d_tree %>%
          cored = "Cored (T/F)", n_TreMs = "# of TreMs", h_TreMs = "TreMs Height",
          tapped = "Tapped (T/F)") %>%
   mutate(alive = as.logical(alive))
+# Replace various unhelpful species names 
+d_tree$spp[d_tree$spp == "Sugar maple" & !is.na(d_tree$spp)] <- "Sugar Maple"
+d_tree$spp[d_tree$spp == "American beech" & !is.na(d_tree$spp)] <- "American Beech"
+d_tree$spp[d_tree$spp == "Beech" & !is.na(d_tree$spp)] <- "American Beech"
+d_tree$spp[d_tree$spp == "Grey Birch" & !is.na(d_tree$spp)] <- "Gray Birch"
+d_tree$spp[d_tree$spp == "Hophornbeam" & !is.na(d_tree$spp)] <- "American Hophornbeam"
+d_tree$spp[d_tree$spp == "Maple" & !is.na(d_tree$spp)] <- "Sugar Maple" # TR - Assuming that these are sugar maple for now. Need to go back to the field to check this!!!
+d_tree$spp[d_tree$spp == "Ash?" & !is.na(d_tree$spp)] <- "White Ash" # TR - Assuming that these are white ash for now. Need to go back to the field to check this!!!
+d_tree$spp[d_tree$spp == "*snag*" & !is.na(d_tree$spp)] <- NA
+d_tree$spp[d_tree$spp == "N/A" & !is.na(d_tree$spp)] <- NA
+d_tree$spp[d_tree$spp == "Unsure" & !is.na(d_tree$spp)] <- NA
+d_tree$spp[d_tree$spp == "Unknown" & !is.na(d_tree$spp)] <- NA
+d_tree$spp[d_tree$spp == "Hardwood" & !is.na(d_tree$spp)] <- NA
+
 d_under <- d_under %>%
   rename(site = "Site #", plot = "Plot #", subplot = "Subplot", 
          name = "Common Name", spp = "Species", group = "Group", 
@@ -107,4 +122,3 @@ d_fauna <- d_fauna %>%
          dia_t = "Tubing size (in)", col_t = "Tubing color", 
          comments = "Comments")
 #===============================================================================
-
