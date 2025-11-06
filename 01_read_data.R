@@ -25,7 +25,8 @@ d_tree <- read_excel(path = paste0(dir, file_name),
 # with varying file length. 
 d_tap <- read_excel(path = paste0(dir, file_name), 
                     sheet = "Trees",
-                    range = "A1:AL342", 
+                    range = "A1:AL342", # Final line is currently hard-coded
+                                        # This needs to change with 
                     col_names = 
                       c("site", "plot", "tree_ID", "colD", "colE", "colF", 
                         "colG", "colH", "colI", "colJ", "colK", "colL", "colM", 

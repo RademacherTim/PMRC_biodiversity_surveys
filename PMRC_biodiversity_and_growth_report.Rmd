@@ -56,15 +56,15 @@ ggplot(head(hist_counts, 12), aes(x = reorder(Var1, -Freq), y=Freq)) + geom_bar(
 Sampled trees typically range between 9 and approximately 80 cm DBH, with a mean of 26 cm. Exact distributions of DBH, height, and species will vary between plots. The density of trees also varies. Intuitively, one would expect trees with a larger DBH (and crown diameter) to reduce growth opportunities for neighboring trees. Figure 3 displays this relationship, defining tree competitiveness as the total basal area of all trees in a 5-m radius of any given tree. We see a reduction in neighboring basal area as tree DBH increases.
 
 ```{r message=FALSE, warning=FALSE}
-source("01_read_data.R")
+#source("01_read_data.R")
 
 ### Use external script to calculate total basal area surrounding our trees.
 ## This script depends on the `d_tree` dataframe created by "01_read_data.R"
 ## Primary output is the `d_tree_competition` dataframe.
-source("02_calculate_basal_area_buffer.R")
+#source("02_calculate_basal_area_buffer.R")
 
 # Plot the results.
-plot(d_tree_competition$dbh, d_tree_competition$compensated_buffer_area, xlab="DBH, cm", ylab="Basal area (sq. m) within 5m radius of tree", main="Fig. 3: PMRC Tree Competitiveness")
+#plot(d_tree_competition$dbh, d_tree_competition$compensated_buffer_area, xlab="DBH, cm", ylab="Basal area (sq. m) within 5m radius of tree", main="Fig. 3: PMRC Tree Competitiveness")
 
 ```
 

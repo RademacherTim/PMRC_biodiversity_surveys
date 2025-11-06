@@ -16,12 +16,24 @@ d_tmp <- d_tree %>% filter(spp %in% c("American Beech",
                                       "White Ash",
                                       "Yellow Birch"))
 
+# Build a mixed effects model ----
+mod1 <- lmer(n_TreMs ~ dbh + (1 | spp) + (1 | alive), data = d_tmp)
+mod2 <- lmer(n_TreMs ~ dbh + alive + (1 | spp), data = d_tmp)
+mod3 <- lmer(n_TreMs ~ dbh * alive + (1 | spp), data = d_tmp)
+mod4 <- lmer(n_TreMs ~ dbh + dbh:alive + (1 | spp), data = d_tmp)
+summary(mod1); coef(mod1)
+summary(mod2); coef(mod2)
+summary(mod3); coef(mod3)
+summary(mod4); coef(mod4)
+
 # plot of the number of TreMs versus DBH for six species with more than 20 
 # individuals ----
+species = c("American Beech", "Red Maple", "Red Spruce", "Sugar Maple", 
+            "White Ash", "Yellow Birch")
 par(mfrow = c(6, 2))
-for (species in c("American Beech", "Red Maple", "Red Spruce", "Sugar Maple", "White Ash", "Yellow Birch")){
+for (spp in species){
   par(mar = c(5, 5, 1, 1))
-  con <- d_tmp$alive & d_tmp$spp == species
+  con <- d_tmp$alive & d_tmp$spp == spp
   plot (x = d_tmp$dbh[con], 
         y = d_tmp$n_TreMs[con], 
         xlim = c(0, 100), axes = FALSE, ylim = c(0, 16),
@@ -31,11 +43,11 @@ for (species in c("American Beech", "Red Maple", "Red Spruce", "Sugar Maple", "W
   axis(side = 1)
   axis(side = 2, las = 1)
   
-  fit_alive <- lm(n_TreMs ~ dbh, data = d_tmp[d_tmp$alive, ])
+  fit_alive <- lmer(n_TreMs ~ dbh + (1 | spp), data = d_tmp[d_tmp$alive, ])
   abline(fit_alive, col = "#91b9a4", lty = 2, lwd = 2)
   
   par(mar = c (5, 1, 1, 1))
-  con <- !d_tmp$alive & d_tmp$spp == species
+  con <- !d_tmp$alive & d_tmp$spp == spp
   plot (x = d_tmp$dbh[con], 
         y = d_tmp$n_TreMs[con], 
         xlim = c(0, 100), axes = FALSE, ylim = c(0, 16), 
