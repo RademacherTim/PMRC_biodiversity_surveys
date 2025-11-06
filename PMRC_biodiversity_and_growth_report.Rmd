@@ -1,7 +1,7 @@
 ---
-title: "PMRC biodiversity and growth"
+title: "PMRC Protocol for Plot-based Measurements of Biodiversity and Growth in Sugarbushes"
 author: "Ainsley Redd, Emma Griffith, Garrett Simon, Sophie Williams, Teaghan McAllister, Tim Rademacher & Walt Regan-Loomis"
-date: "2025-09-30"
+date: "2025-11-06"
 output: html_document
 ---
 
@@ -13,11 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 #plot(pressure)
 ```
 
-## Introduction <!-- Tim -->
+## Introduction
 
-Maple sugaring requires maples trees, which are generally part of a forested stand. 
+Maple sugaring requires maples trees, which are generally part of a forested stand. These stands are assumed to vary substantially in the structure and composition. However, there is little empirical evidence that helps us understanding the observed variability and its drivers. The following protocol is an attempt to characterize biodiversity, forest composition, and structure at the sugarbush level. We started using this protocol at the Proctor Maple Research Center in the summer of 2025. 
 
-## Methods: Data collection <!--  -->
+## Methods: Data collection
 
 Forest composition was sampled throughout the PMRC land parcel through the selection of survey plots that provide a representative sample of the local ecosystem and terrain diversity. Plots were designed using a method resembling that set forth in the USDA Forest Inventory and Analysis (FIA) plot design[^1]. See Figure 1 for a visual reference.
 
@@ -56,7 +56,7 @@ ggplot(head(hist_counts, 12), aes(x = reorder(Var1, -Freq), y=Freq)) + geom_bar(
 Sampled trees typically range between 9 and approximately 80 cm DBH, with a mean of 26 cm. Exact distributions of DBH, height, and species will vary between plots. The density of trees also varies. Intuitively, one would expect trees with a larger DBH (and crown diameter) to reduce growth opportunities for neighboring trees. Figure 3 displays this relationship, defining tree competitiveness as the total basal area of all trees in a 5-m radius of any given tree. We see a reduction in neighboring basal area as tree DBH increases.
 
 ```{r message=FALSE, warning=FALSE}
-#source("01_read_data.R")
+source("01_read_data.R")
 
 ### Use external script to calculate total basal area surrounding our trees.
 ## This script depends on the `d_tree` dataframe created by "01_read_data.R"
