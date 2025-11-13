@@ -31,7 +31,7 @@ par(mfrow = c(1, 1), mar = c(5, 5, 1, 1))
 plot(x = tmp$n_trees, 
      y = tmp$n_fungi, 
      axes = FALSE, 
-     xlim = c(1, 10), ylim = c(0, 20), pch = 19, col = "brown",
+     xlim = c(1, 10), ylim = c(0, 20), pch = 19, col = "#8c6e52cc", cex = 2,
      xlab = "Tree species richness (n)", 
      ylab = "Macrofungal species richness (n)")
 # plot(x = tmp$n_trees[tmp$substrate == "Deadwood"], 
@@ -51,7 +51,7 @@ axis(side = 2, las = 1)
 mod <- lm(n_fungi ~ n_trees, data = tmp)
 summary(mod)
 
-abline(mod, col = "brown", lwd = 2)
+abline(mod, col = "#8c6e5266", lwd = 2)
 
 # Compare sugared versus non-sugared plots ----
 tmp1 <- d_plot %>% select(plot, sugared)
