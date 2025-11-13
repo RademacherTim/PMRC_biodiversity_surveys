@@ -108,7 +108,8 @@ d_fungi <- d_fungi %>%
          gill_morph = "Gill Morphology", pileus_morph = "Pileus Morphology", 
          spore_print = "Spore Print", eco_role = "Ecological Role", 
          notes = "Notes") %>%
-  mutate(plot = as.character(plot))
+  mutate(plot = as.character(plot),
+         n_sporo = as.numeric(ifelse(n_sporo == "TMTC", 50, n_sporo)))
 d_tubing <- d_tubing %>%
   rename(site = "Site #", plot = "Plot #", tubing_ID = "Tubing ID", 
          tree_ID1 = "Tree1", tree_ID2 = "Tree2", b2 = "Boundary2", 
