@@ -32,25 +32,26 @@ plot(x = tmp$n_trees,
      y = tmp$n_fungi, 
      axes = FALSE, 
      xlim = c(1, 10), ylim = c(0, 20), pch = 19, col = "brown",
-     xlab = "Tree species richness (n)", ylab = "Macrofungal species richness (n)")
-plot(x = tmp$n_trees[tmp$substrate == "Deadwood"], 
-     y = tmp$n_fungi[tmp$substrate == "Deadwood"], axes = FALSE, 
-     xlim = c(1, 10), ylim = c(0, 20), pch = 19, col = "brown",
-     xlab = "Tree species richness (n)", ylab = "Macrofungal species richness (n)")
+     xlab = "Tree species richness (n)", 
+     ylab = "Macrofungal species richness (n)")
+# plot(x = tmp$n_trees[tmp$substrate == "Deadwood"], 
+#      y = tmp$n_fungi[tmp$substrate == "Deadwood"], axes = FALSE, 
+#      xlim = c(1, 10), ylim = c(0, 20), pch = 19, col = "brown",
+#      xlab = "Tree species richness (n)", ylab = "Macrofungal species richness (n)")
 axis(side = 1)
 axis(side = 2, las = 1)
-points(x = tmp$n_trees[tmp$substrate == "Soil"], 
-       y = tmp$n_fungi[tmp$substrate == "Soil"],
-       col = "brown1")
-points(x = tmp$n_trees[tmp$substrate == "Tree"], 
-       y = tmp$n_fungi[tmp$substrate == "Tree"],
-       col = "darkgreen")
+# points(x = tmp$n_trees[tmp$substrate == "Soil"], 
+#        y = tmp$n_fungi[tmp$substrate == "Soil"],
+#        col = "brown1")
+# points(x = tmp$n_trees[tmp$substrate == "Tree"], 
+#        y = tmp$n_fungi[tmp$substrate == "Tree"],
+#        col = "darkgreen")
 
 # Fit a model 
-mod <- lmer(n_fungi ~ n_trees, data = tmp)
+mod <- lm(n_fungi ~ n_trees, data = tmp)
 summary(mod)
 
-abline(mod, col = "#91b4a9", lwd = 2)
+abline(mod, col = "brown", lwd = 2)
 
 # Compare sugared versus non-sugared plots ----
 tmp1 <- d_plot %>% select(plot, sugared)
