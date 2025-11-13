@@ -27,6 +27,7 @@ tmp2 <- d_tree %>% group_by(site, plot) %>%
 tmp <- left_join(x = tmp1, y = tmp2, by = c("site", "plot"))
 
 # Plot macrofungal versus tree species diversity -----
+par(mfrow = c(1, 1), mar = c(5, 5, 1, 1))
 plot(x = tmp$n_trees, 
      y = tmp$n_fungi, 
      axes = FALSE, 
